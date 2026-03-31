@@ -1,6 +1,8 @@
 package com.playwright.cucumber.steps;
 
+import com.playwright.cucumber.hooks.PlaywrightHooks;
 import com.playwright.cucumber.pages.InventoryPage;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -10,7 +12,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class InventorySteps {
 
-    private final InventoryPage inventoryPage = new InventoryPage();
+    private InventoryPage inventoryPage;
+
+    @Before
+    public void setup() {
+        inventoryPage = new InventoryPage(PlaywrightHooks.getPage());
+    }
 
     @Given("I am on the inventory page")
     public void iAmOnTheInventoryPage() {
@@ -19,12 +26,12 @@ public class InventorySteps {
 
     @Then("the inventory title should be {string}")
     public void theInventoryTitleShouldBe(String title) {
-        assertThat(inventoryPage.inventoryTitle()).hasText(title);
+        assertThat(inventoryPage.inventoryTitle).hasText(title);
     }
 
     @Then("the inventory list should be visible")
     public void theInventoryListShouldBeVisible() {
-        assertThat(inventoryPage.inventoryList()).isVisible();
+        assertThat(inventoryPage.inventoryList).isVisible();
     }
 
     @Then("the inventory should have {int} items")
@@ -66,20 +73,20 @@ public class InventorySteps {
 
     @Then("the equipped count should be {string}")
     public void theEquippedCountShouldBe(String count) {
-        var equippedEl = inventoryPage.summaryEquipped().locator("span.text-lg");
+        var equippedEl = inventoryPage.summaryEquipped.locator("span.text-lg");
         assertThat(equippedEl).hasText(count);
     }
 
     @Then("the total damage should be greater than {string}")
     public void theTotalDamageShouldBeGreaterThan(String value) {
-        var damageEl = inventoryPage.summaryTotalDamage().locator("span.text-lg");
+        var damageEl = inventoryPage.summaryTotalDamage.locator("span.text-lg");
         String text = damageEl.textContent().trim();
         assertThat(Integer.parseInt(text)).isGreaterThan(Integer.parseInt(value));
     }
 
     @Then("the total items count in summary should be {string}")
     public void theTotalItemsCountInSummaryShouldBe(String count) {
-        var totalEl = inventoryPage.summaryTotalItems().locator("span.text-lg");
+        var totalEl = inventoryPage.summaryTotalItems.locator("span.text-lg");
         assertThat(totalEl).hasText(count);
     }
 }

@@ -8,25 +8,12 @@ import com.microsoft.playwright.Page;
 
 /**
  * Base page using AutoHeal locator for self-healing selectors.
- * When a selector breaks (e.g. data-testid renamed, ID changed),
- * AutoHeal will use AI to find the correct element.
- *
- * To use: set up AutoHeal in hooks and inject the instance here.
- *
- * Usage example:
- * <pre>
- *   AutoHealLocator autoHeal = AutoHealLocator.builder()
- *       .withPlaywrightPage(page)
- *       .withAIProvider(AIProvider.GOOGLE_GEMINI)
- *       .withStrategy(ExecutionStrategy.SMART_SEQUENTIAL)
- *       .build();
- *
- *   AutoHealBasePage.setAutoHeal(autoHeal);
- * </pre>
+ * Works both standalone (via setPage) and with Cucumber (via PlaywrightHooks).
  */
 public abstract class AutoHealBasePage {
 
     private static final ThreadLocal<AutoHealLocator> autoHealLocator = new ThreadLocal<>();
+    private static final ThreadLocal<Page> standalonePage = new ThreadLocal<>();
 
     public static void setAutoHeal(AutoHealLocator autoHeal) {
         autoHealLocator.set(autoHeal);
@@ -36,15 +23,22 @@ public abstract class AutoHealBasePage {
         return autoHealLocator.get();
     }
 
+    public static void setPage(Page page) {
+        standalonePage.set(page);
+    }
+
     public static void clearAutoHeal() {
         AutoHealLocator ah = autoHealLocator.get();
         if (ah != null) {
             ah.shutdown();
         }
         autoHealLocator.remove();
+        standalonePage.remove();
     }
 
     protected Page getPage() {
+        Page p = standalonePage.get();
+        if (p != null) return p;
         return PlaywrightHooks.getPage();
     }
 
@@ -62,20 +56,13 @@ public abstract class AutoHealBasePage {
         if (ah != null) {
             return ah.find(getPage(), selector, description);
         }
-        // Fallback to standard Playwright locator
         return getPage().locator(selector);
     }
 
-    /**
-     * Find by data-testid using AutoHeal.
-     */
     protected Locator findByTestId(String testId, String description) {
         return find("[data-testid='" + testId + "']", description);
     }
 
-    /**
-     * Find by ID using AutoHeal.
-     */
     protected Locator findById(String id, String description) {
         return find("#" + id, description);
     }

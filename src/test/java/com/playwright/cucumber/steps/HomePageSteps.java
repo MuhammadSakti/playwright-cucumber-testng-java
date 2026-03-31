@@ -1,6 +1,8 @@
 package com.playwright.cucumber.steps;
 
+import com.playwright.cucumber.hooks.PlaywrightHooks;
 import com.playwright.cucumber.pages.HomePage;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -10,7 +12,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePageSteps {
 
-    private final HomePage homePage = new HomePage();
+    private HomePage homePage;
+
+    @Before
+    public void setup() {
+        homePage = new HomePage(PlaywrightHooks.getPage());
+    }
 
     @Given("I am on the home page")
     public void iAmOnTheHomePage() {
@@ -21,59 +28,59 @@ public class HomePageSteps {
 
     @Then("the page title should be {string}")
     public void thePageTitleShouldBe(String expectedTitle) {
-        assertThat(homePage.pageTitle()).hasText(expectedTitle);
+        assertThat(homePage.pageTitle).hasText(expectedTitle);
     }
 
     @Then("the page subtitle should be {string}")
     public void thePageSubtitleShouldBe(String expectedSubtitle) {
-        assertThat(homePage.pageSubtitle()).hasText(expectedSubtitle);
+        assertThat(homePage.pageSubtitle).hasText(expectedSubtitle);
     }
 
     @Then("the header should be visible")
     public void theHeaderShouldBeVisible() {
-        assertThat(homePage.header()).isVisible();
+        assertThat(homePage.header).isVisible();
     }
 
     @Then("the footer should be visible")
     public void theFooterShouldBeVisible() {
-        assertThat(homePage.footer()).isVisible();
+        assertThat(homePage.footer).isVisible();
     }
 
     @Then("the search input should be visible")
     public void theSearchInputShouldBeVisible() {
-        assertThat(homePage.searchInput()).isVisible();
+        assertThat(homePage.searchInput).isVisible();
     }
 
     @Then("the filter panel should be visible")
     public void theFilterPanelShouldBeVisible() {
-        assertThat(homePage.filterPanel()).isVisible();
+        assertThat(homePage.filterPanel).isVisible();
     }
 
     @Then("the items grid should be visible")
     public void theItemsGridShouldBeVisible() {
-        assertThat(homePage.itemsGrid()).isVisible();
+        assertThat(homePage.itemsGrid).isVisible();
     }
 
     @Then("the stats bar should be visible")
     public void theStatsBarShouldBeVisible() {
-        assertThat(homePage.statsBar()).isVisible();
+        assertThat(homePage.statsBar).isVisible();
     }
 
     // --- Stats ---
 
     @Then("the total items count should be {string}")
     public void theTotalItemsCountShouldBe(String count) {
-        assertThat(homePage.totalCount()).hasText(count);
+        assertThat(homePage.totalCount).hasText(count);
     }
 
     @Then("the showing count should be {string}")
     public void theShowingCountShouldBe(String count) {
-        assertThat(homePage.showingCount()).hasText(count);
+        assertThat(homePage.showingCount).hasText(count);
     }
 
     @Then("the legendary count should be {string}")
     public void theLegendaryCountShouldBe(String count) {
-        assertThat(homePage.legendaryCount()).hasText(count);
+        assertThat(homePage.legendaryCount).hasText(count);
     }
 
     // --- Search ---
@@ -101,7 +108,7 @@ public class HomePageSteps {
 
     @Then("the empty state should be visible")
     public void theEmptyStateShouldBeVisible() {
-        assertThat(homePage.emptyState()).isVisible();
+        assertThat(homePage.emptyState).isVisible();
     }
 
     // --- Filters ---
@@ -118,25 +125,24 @@ public class HomePageSteps {
 
     @When("I set the minimum level to {int}")
     public void iSetTheMinimumLevelTo(int level) {
-        homePage.minLevelInput().fill(String.valueOf(level));
+        homePage.minLevelInput.fill(String.valueOf(level));
     }
 
     @When("I set the maximum level to {int}")
     public void iSetTheMaximumLevelTo(int level) {
-        homePage.maxLevelInput().fill(String.valueOf(level));
+        homePage.maxLevelInput.fill(String.valueOf(level));
     }
 
     @When("I click the reset filters button")
     public void iClickTheResetFiltersButton() {
-        homePage.resetFiltersButton().click();
+        homePage.resetFiltersButton.click();
     }
 
     @Then("all visible items should be in the {string} category")
     public void allVisibleItemsShouldBeInCategory(String category) {
         int count = homePage.getDisplayedItemCount();
         assertThat(count).as("Expected at least one item visible").isGreaterThan(0);
-        // All visible cards should have the matching data-category attribute
-        var cards = homePage.itemsGrid().locator("[data-category='" + category + "']");
+        var cards = homePage.itemsGrid.locator("[data-category='" + category + "']");
         assertThat(cards.count()).isEqualTo(count);
     }
 
@@ -144,7 +150,7 @@ public class HomePageSteps {
     public void allVisibleItemsShouldBeInEitherCategory(String cat1, String cat2) {
         int count = homePage.getDisplayedItemCount();
         assertThat(count).as("Expected at least one item visible").isGreaterThan(0);
-        var matching = homePage.itemsGrid()
+        var matching = homePage.itemsGrid
                 .locator("[data-category='" + cat1 + "'], [data-category='" + cat2 + "']");
         assertThat(matching.count()).isEqualTo(count);
     }
@@ -153,7 +159,7 @@ public class HomePageSteps {
     public void allVisibleItemsShouldHaveRarity(String rarity) {
         int count = homePage.getDisplayedItemCount();
         assertThat(count).as("Expected at least one item visible").isGreaterThan(0);
-        var cards = homePage.itemsGrid().locator("[data-rarity='" + rarity + "']");
+        var cards = homePage.itemsGrid.locator("[data-rarity='" + rarity + "']");
         assertThat(cards.count()).isEqualTo(count);
     }
 
@@ -172,21 +178,19 @@ public class HomePageSteps {
 
     @Then("the first item should be {string}")
     public void theFirstItemShouldBe(String expectedName) {
-        var firstCard = homePage.itemsGrid().locator("[data-testid^='item-name-']").first();
+        var firstCard = homePage.itemsGrid.locator("[data-testid^='item-name-']").first();
         assertThat(firstCard).hasText(expectedName);
     }
 
     @Then("the first item should have the highest damage")
     public void theFirstItemShouldHaveTheHighestDamage() {
-        // Mjolnir has the highest damage (130)
-        var firstCard = homePage.itemsGrid().locator("[data-testid^='item-name-']").first();
+        var firstCard = homePage.itemsGrid.locator("[data-testid^='item-name-']").first();
         assertThat(firstCard).hasText("Mjolnir");
     }
 
     @Then("the first item should have the lowest price")
     public void theFirstItemShouldHaveTheLowestPrice() {
-        // Hunting Knife has the lowest price (20)
-        var firstCard = homePage.itemsGrid().locator("[data-testid^='item-name-']").first();
+        var firstCard = homePage.itemsGrid.locator("[data-testid^='item-name-']").first();
         assertThat(firstCard).hasText("Hunting Knife");
     }
 
@@ -211,16 +215,16 @@ public class HomePageSteps {
 
     @Then("the toast notification should appear")
     public void theToastNotificationShouldAppear() {
-        assertThat(homePage.toast()).isVisible();
+        assertThat(homePage.toast).isVisible();
     }
 
     @Then("the toast message should contain {string}")
     public void theToastMessageShouldContain(String text) {
-        assertThat(homePage.toastMessage()).containsText(text);
+        assertThat(homePage.toastMessage).containsText(text);
     }
 
     @Then("the cart badge should show {string}")
     public void theCartBadgeShouldShow(String count) {
-        assertThat(homePage.cartBadge()).hasText(count);
+        assertThat(homePage.cartBadge).hasText(count);
     }
 }

@@ -6,4 +6,9 @@
             <class name="com.playwright.cucumber.runner.RunCucumberTest"/>
         </classes>
     </test>
+    <test name="AutoHeal Tests">
+        <classes>
+            <class name="com.playwright.cucumber.healed.AutoHealHomePageTest"/>
+        </classes>
+    </test>
 </suite>

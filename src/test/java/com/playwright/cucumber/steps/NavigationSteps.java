@@ -3,6 +3,7 @@ package com.playwright.cucumber.steps;
 import com.playwright.cucumber.config.TestConfig;
 import com.playwright.cucumber.hooks.PlaywrightHooks;
 import com.playwright.cucumber.pages.HomePage;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 
@@ -10,20 +11,25 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 public class NavigationSteps {
 
-    private final HomePage homePage = new HomePage();
+    private HomePage homePage;
+
+    @Before
+    public void setup() {
+        homePage = new HomePage(PlaywrightHooks.getPage());
+    }
 
     @When("I click the {string} navigation link")
     public void iClickTheNavigationLink(String linkText) {
         switch (linkText) {
-            case "Home" -> homePage.navHome().click();
-            case "Inventory" -> homePage.navInventory().click();
-            case "About" -> homePage.navAbout().click();
+            case "Home" -> homePage.navHome.click();
+            case "Inventory" -> homePage.navInventory.click();
+            case "About" -> homePage.navAbout.click();
         }
     }
 
     @When("I click the logo link")
     public void iClickTheLogoLink() {
-        homePage.logoLink().click();
+        homePage.logoLink.click();
     }
 
     @Then("I should be on the home page")

@@ -1,59 +1,72 @@
 package com.playwright.cucumber.pages;
 
 import com.playwright.cucumber.config.TestConfig;
-import com.playwright.cucumber.hooks.PlaywrightHooks;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 
 public abstract class BasePage {
 
-    protected Page getPage() {
-        return PlaywrightHooks.getPage();
+    protected final Page page;
+
+    // Header elements (shared across all pages)
+    public final Locator header;
+    public final Locator logoLink;
+    public final Locator navHome;
+    public final Locator navInventory;
+    public final Locator navAbout;
+    public final Locator cartButton;
+    public final Locator cartBadge;
+    public final Locator profileButton;
+    public final Locator mobileMenuToggle;
+    public final Locator mobileMenu;
+    public final Locator footer;
+
+    public BasePage(Page page) {
+        this.page = page;
+
+        this.header = byTestId("header");
+        this.logoLink = byTestId("logo-link");
+        this.navHome = byTestId("nav-home");
+        this.navInventory = byTestId("nav-inventory");
+        this.navAbout = byTestId("nav-about");
+        this.cartButton = byTestId("cart-button");
+        this.cartBadge = byTestId("cart-badge");
+        this.profileButton = byTestId("profile-button");
+        this.mobileMenuToggle = byTestId("mobile-menu-toggle");
+        this.mobileMenu = byTestId("mobile-menu");
+        this.footer = byTestId("footer");
     }
 
     protected void navigate(String path) {
-        getPage().navigate(TestConfig.getBaseUrl() + path);
+        page.navigate(TestConfig.getBaseUrl() + path);
     }
 
     protected Locator byTestId(String testId) {
-        return getPage().getByTestId(testId);
+        return page.getByTestId(testId);
     }
 
     protected Locator byRole(AriaRole role, String name) {
-        return getPage().getByRole(role, new Page.GetByRoleOptions().setName(name));
+        return page.getByRole(role, new Page.GetByRoleOptions().setName(name));
     }
 
     protected Locator byId(String id) {
-        return getPage().locator("#" + id);
+        return page.locator("#" + id);
     }
 
     protected Locator byCss(String css) {
-        return getPage().locator(css);
+        return page.locator(css);
     }
 
     protected Locator byLabel(String label) {
-        return getPage().getByLabel(label);
+        return page.getByLabel(label);
     }
 
     protected Locator byText(String text) {
-        return getPage().getByText(text);
+        return page.getByText(text);
     }
 
     protected Locator byPlaceholder(String placeholder) {
-        return getPage().getByPlaceholder(placeholder);
+        return page.getByPlaceholder(placeholder);
     }
-
-    // Header elements (shared across all pages)
-    public Locator header() { return byTestId("header"); }
-    public Locator logoLink() { return byTestId("logo-link"); }
-    public Locator navHome() { return byTestId("nav-home"); }
-    public Locator navInventory() { return byTestId("nav-inventory"); }
-    public Locator navAbout() { return byTestId("nav-about"); }
-    public Locator cartButton() { return byTestId("cart-button"); }
-    public Locator cartBadge() { return byTestId("cart-badge"); }
-    public Locator profileButton() { return byTestId("profile-button"); }
-    public Locator mobileMenuToggle() { return byTestId("mobile-menu-toggle"); }
-    public Locator mobileMenu() { return byTestId("mobile-menu"); }
-    public Locator footer() { return byTestId("footer"); }
 }

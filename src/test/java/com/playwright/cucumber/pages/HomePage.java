@@ -1,34 +1,115 @@
 package com.playwright.cucumber.pages;
 
 import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
 
 public class HomePage extends BasePage {
+
+    // Hero section
+    public final Locator pageTitle;
+    public final Locator pageSubtitle;
+
+    // Search
+    public final Locator searchInput;
+    public final Locator searchClearButton;
+
+    // Stats bar
+    public final Locator statsBar;
+    public final Locator totalCount;
+    public final Locator showingCount;
+    public final Locator legendaryCount;
+
+    // Filter panel
+    public final Locator filterPanel;
+    public final Locator filterToggle;
+    public final Locator filterContent;
+    public final Locator sortSelect;
+    public final Locator resetFiltersButton;
+    public final Locator minLevelInput;
+    public final Locator maxLevelInput;
+
+    // Items grid
+    public final Locator itemsGrid;
+    public final Locator emptyState;
+
+    // Modal
+    public final Locator modal;
+    public final Locator modalItemName;
+    public final Locator modalItemDescription;
+    public final Locator modalItemRarity;
+    public final Locator modalCloseButton;
+    public final Locator modalAddToCart;
+    public final Locator quantityIncrease;
+    public final Locator quantityDecrease;
+    public final Locator quantityValue;
+    public final Locator modalTotalPrice;
+    public final Locator modalEffectsList;
+    public final Locator modalStatDamage;
+    public final Locator modalStatDefense;
+    public final Locator modalStatSpeed;
+
+    // Toast
+    public final Locator toast;
+    public final Locator toastMessage;
+    public final Locator toastClose;
+
+    public HomePage(Page page) {
+        super(page);
+
+        // Hero
+        this.pageTitle = byTestId("page-title");
+        this.pageSubtitle = byTestId("page-subtitle");
+
+        // Search
+        this.searchInput = byTestId("search-input");
+        this.searchClearButton = byTestId("search-clear-button");
+
+        // Stats bar
+        this.statsBar = byTestId("stats-bar");
+        this.totalCount = byTestId("total-count");
+        this.showingCount = byTestId("showing-count");
+        this.legendaryCount = byTestId("legendary-count");
+
+        // Filter panel
+        this.filterPanel = byTestId("filter-panel");
+        this.filterToggle = byTestId("filter-toggle");
+        this.filterContent = byTestId("filter-content");
+        this.sortSelect = byTestId("sort-select");
+        this.resetFiltersButton = byTestId("reset-filters-button");
+        this.minLevelInput = byTestId("min-level-input");
+        this.maxLevelInput = byTestId("max-level-input");
+
+        // Items grid
+        this.itemsGrid = byTestId("items-grid");
+        this.emptyState = byTestId("empty-state");
+
+        // Modal
+        this.modal = byTestId("item-detail-modal");
+        this.modalItemName = byTestId("modal-item-name");
+        this.modalItemDescription = byTestId("modal-item-description");
+        this.modalItemRarity = byTestId("modal-item-rarity");
+        this.modalCloseButton = byTestId("modal-close-button");
+        this.modalAddToCart = byTestId("modal-add-to-cart");
+        this.quantityIncrease = byTestId("quantity-increase");
+        this.quantityDecrease = byTestId("quantity-decrease");
+        this.quantityValue = byTestId("quantity-value");
+        this.modalTotalPrice = byTestId("modal-total-price");
+        this.modalEffectsList = byTestId("modal-effects-list");
+        this.modalStatDamage = byTestId("modal-stat-damage");
+        this.modalStatDefense = byTestId("modal-stat-defense");
+        this.modalStatSpeed = byTestId("modal-stat-speed");
+
+        // Toast
+        this.toast = byTestId("toast-notification");
+        this.toastMessage = byTestId("toast-message");
+        this.toastClose = byTestId("toast-close");
+    }
 
     public void open() {
         navigate("/");
     }
 
-    // Hero section
-    public Locator pageTitle() { return byTestId("page-title"); }
-    public Locator pageSubtitle() { return byTestId("page-subtitle"); }
-
-    // Search
-    public Locator searchInput() { return byTestId("search-input"); }
-    public Locator searchClearButton() { return byTestId("search-clear-button"); }
-
-    // Stats bar
-    public Locator statsBar() { return byTestId("stats-bar"); }
-    public Locator totalCount() { return byTestId("total-count"); }
-    public Locator showingCount() { return byTestId("showing-count"); }
-    public Locator legendaryCount() { return byTestId("legendary-count"); }
-
-    // Filter panel
-    public Locator filterPanel() { return byTestId("filter-panel"); }
-    public Locator filterToggle() { return byTestId("filter-toggle"); }
-    public Locator filterContent() { return byTestId("filter-content"); }
-    public Locator sortSelect() { return byTestId("sort-select"); }
-    public Locator resetFiltersButton() { return byTestId("reset-filters-button"); }
-
+    // Dynamic locators (require parameter)
     public Locator categoryCheckbox(String category) {
         return byTestId("category-checkbox-" + category);
     }
@@ -36,13 +117,6 @@ public class HomePage extends BasePage {
     public Locator rarityCheckbox(String rarity) {
         return byTestId("rarity-checkbox-" + rarity);
     }
-
-    public Locator minLevelInput() { return byTestId("min-level-input"); }
-    public Locator maxLevelInput() { return byTestId("max-level-input"); }
-
-    // Items grid
-    public Locator itemsGrid() { return byTestId("items-grid"); }
-    public Locator emptyState() { return byTestId("empty-state"); }
 
     public Locator itemCard(String itemId) {
         return byTestId("item-card-" + itemId);
@@ -72,39 +146,17 @@ public class HomePage extends BasePage {
         return byTestId("item-stats-" + itemId);
     }
 
-    // Item count in grid
     public int getDisplayedItemCount() {
-        return itemsGrid().locator("[data-testid^='item-card-']").count();
+        return itemsGrid.locator("[data-testid^='item-card-']").count();
     }
-
-    // Modal
-    public Locator modal() { return byTestId("item-detail-modal"); }
-    public Locator modalItemName() { return byTestId("modal-item-name"); }
-    public Locator modalItemDescription() { return byTestId("modal-item-description"); }
-    public Locator modalItemRarity() { return byTestId("modal-item-rarity"); }
-    public Locator modalCloseButton() { return byTestId("modal-close-button"); }
-    public Locator modalAddToCart() { return byTestId("modal-add-to-cart"); }
-    public Locator quantityIncrease() { return byTestId("quantity-increase"); }
-    public Locator quantityDecrease() { return byTestId("quantity-decrease"); }
-    public Locator quantityValue() { return byTestId("quantity-value"); }
-    public Locator modalTotalPrice() { return byTestId("modal-total-price"); }
-    public Locator modalEffectsList() { return byTestId("modal-effects-list"); }
-    public Locator modalStatDamage() { return byTestId("modal-stat-damage"); }
-    public Locator modalStatDefense() { return byTestId("modal-stat-defense"); }
-    public Locator modalStatSpeed() { return byTestId("modal-stat-speed"); }
-
-    // Toast
-    public Locator toast() { return byTestId("toast-notification"); }
-    public Locator toastMessage() { return byTestId("toast-message"); }
-    public Locator toastClose() { return byTestId("toast-close"); }
 
     // Actions
     public void searchFor(String query) {
-        searchInput().fill(query);
+        searchInput.fill(query);
     }
 
     public void clearSearch() {
-        searchClearButton().click();
+        searchClearButton.click();
     }
 
     public void selectCategory(String category) {
@@ -120,12 +172,12 @@ public class HomePage extends BasePage {
     }
 
     public void sortBy(String value) {
-        sortSelect().selectOption(value);
+        sortSelect.selectOption(value);
     }
 
     public void setLevelRange(int min, int max) {
-        if (min > 0) minLevelInput().fill(String.valueOf(min));
-        if (max > 0) maxLevelInput().fill(String.valueOf(max));
+        if (min > 0) minLevelInput.fill(String.valueOf(min));
+        if (max > 0) maxLevelInput.fill(String.valueOf(max));
     }
 
     public void openItemDetail(String itemId) {
