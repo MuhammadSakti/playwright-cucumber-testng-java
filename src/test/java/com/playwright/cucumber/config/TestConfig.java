@@ -1,4 +1,4 @@
-package com.autoheal.demo.config;
+package com.playwright.cucumber.config;
 
 public class TestConfig {
 

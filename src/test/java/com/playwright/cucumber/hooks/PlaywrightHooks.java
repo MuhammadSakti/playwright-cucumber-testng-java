@@ -1,6 +1,6 @@
-package com.autoheal.demo.hooks;
+package com.playwright.cucumber.hooks;
 
-import com.autoheal.demo.config.TestConfig;
+import com.playwright.cucumber.config.TestConfig;
 import com.microsoft.playwright.*;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;

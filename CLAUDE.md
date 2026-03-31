@@ -43,7 +43,7 @@ Environment variables (see `.env.example`), also configurable via system propert
 
 - **Runner:** `RunCucumberTest.java` — JUnit Platform suite entry point.
 - **Hooks:** `PlaywrightHooks.java` — manages browser lifecycle with `@BeforeAll`/`@AfterAll` (browser launch/close) and `@Before`/`@After` (context creation per scenario, screenshot on failure). Uses `ThreadLocal` for page/context isolation.
-- **Glue packages:** `com.autoheal.demo.steps` and `com.autoheal.demo.hooks`.
+- **Glue packages:** `com.playwright.cucumber.steps` and `com.playwright.cucumber.hooks`.
 - **Features:** `src/test/resources/features/` — 5 feature files covering home page, inventory, navigation, contact form, and item detail modal.
 
 **Step definitions** inject page objects by getting the current `Page` from `PlaywrightHooks.getPage()` and constructing page objects in `@Before`-annotated setup methods.

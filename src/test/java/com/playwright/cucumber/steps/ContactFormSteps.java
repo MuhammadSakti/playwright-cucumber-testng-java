@@ -1,6 +1,6 @@
-package com.autoheal.demo.steps;
+package com.playwright.cucumber.steps;
 
-import com.autoheal.demo.pages.AboutPage;
+import com.playwright.cucumber.pages.AboutPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;

@@ -1,8 +1,8 @@
-package com.autoheal.demo.pages.healed;
+package com.playwright.cucumber.pages.healed;
 
 import com.autoheal.core.AutoHealLocator;
-import com.autoheal.demo.config.TestConfig;
-import com.autoheal.demo.hooks.PlaywrightHooks;
+import com.playwright.cucumber.config.TestConfig;
+import com.playwright.cucumber.hooks.PlaywrightHooks;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 

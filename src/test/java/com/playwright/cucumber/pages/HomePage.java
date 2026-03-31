@@ -1,4 +1,4 @@
-package com.autoheal.demo.pages;
+package com.playwright.cucumber.pages;
 
 import com.microsoft.playwright.Locator;
 

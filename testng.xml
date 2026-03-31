@@ -3,7 +3,7 @@
 <suite name="RPG Items Finder Test Suite" verbose="1">
     <test name="Cucumber Tests">
         <classes>
-            <class name="com.autoheal.demo.runner.RunCucumberTest"/>
+            <class name="com.playwright.cucumber.runner.RunCucumberTest"/>
         </classes>
     </test>
 </suite>

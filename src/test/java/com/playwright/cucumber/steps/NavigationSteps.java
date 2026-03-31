@@ -1,8 +1,8 @@
-package com.autoheal.demo.steps;
+package com.playwright.cucumber.steps;
 
-import com.autoheal.demo.config.TestConfig;
-import com.autoheal.demo.hooks.PlaywrightHooks;
-import com.autoheal.demo.pages.HomePage;
+import com.playwright.cucumber.config.TestConfig;
+import com.playwright.cucumber.hooks.PlaywrightHooks;
+import com.playwright.cucumber.pages.HomePage;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 
