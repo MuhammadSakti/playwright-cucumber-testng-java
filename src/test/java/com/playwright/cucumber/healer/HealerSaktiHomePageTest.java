@@ -1,28 +1,31 @@
-package com.playwright.cucumber.healed;
+package com.playwright.cucumber.healer;
 
-import com.autoheal.core.AutoHealLocator;
-import com.playwright.cucumber.config.TestConfig;
-import com.playwright.cucumber.pages.healed.AutoHealBasePage;
-import com.playwright.cucumber.pages.healed.AutoHealHomePage;
+import com.autoheal.PlaywrightAutoHeal;
+import com.autoheal.config.AutoHealConfig;
 import com.microsoft.playwright.*;
-import org.testng.annotations.*;
+import com.playwright.cucumber.config.TestConfig;
+import com.playwright.cucumber.pages.healer.HealerBasePage;
+import com.playwright.cucumber.pages.healer.HealerHomePage;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 /**
- * Standalone TestNG test that runs AutoHeal locators directly.
- * No Cucumber needed — just Playwright + AutoHeal + TestNG.
- *
- * Run with: mvn test -DsuiteXmlFile=testng-autoheal.xml
+ * Standalone TestNG test using AutoHeal v2 (PlaywrightAutoHeal).
+ * Uses the new auto-heal library with Claude/OpenAI/Gemini providers.
+ * <p>
+ * Run with: mvn test -DsuiteXmlFile=testng-healersakti.xml
  */
-public class AutoHealHomePageTest {
+public class HealerSaktiHomePageTest {
 
     private static Playwright playwright;
     private static Browser browser;
     private static BrowserContext context;
     private static Page page;
-    private static AutoHealLocator autoHeal;
-    private AutoHealHomePage homePage;
+    private HealerHomePage homePage;
 
     @BeforeClass
     public void launchBrowser() {
@@ -45,34 +48,28 @@ public class AutoHealHomePageTest {
         context.setDefaultTimeout(10000);
         page = context.newPage();
 
-        // Initialize AutoHeal once — reads AI provider and API key from .env
-        autoHeal = AutoHealLocator.builder()
-                .withPlaywrightPage(page)
+        // Initialize PlaywrightAutoHeal — reads config from .env
+        PlaywrightAutoHeal healer = PlaywrightAutoHeal.builder()
+                .config(AutoHealConfig.fromEnv())
+                .page(page)
                 .build();
 
-        AutoHealBasePage.setPage(page);
-        AutoHealBasePage.setAutoHeal(autoHeal);
+        HealerBasePage.setPage(page);
+        HealerBasePage.setAutoHeal(healer);
     }
 
     @BeforeMethod
     public void setup() {
-        homePage = new AutoHealHomePage();
+        homePage = new HealerHomePage();
     }
 
     @AfterClass
     public void closeBrowser() {
-        // Shutdown AutoHeal once — generates one consolidated report
-        AutoHealBasePage.clearAutoHeal();
+        // Generates report + applies auto-fix if configured
+        HealerBasePage.cleanup();
         if (context != null) context.close();
         if (browser != null) browser.close();
         if (playwright != null) playwright.close();
-
-        // Apply healed selectors to page object source files
-        try {
-            PageObjectUpdater.applyFromLatestReport();
-        } catch (Exception e) {
-            System.err.println("Failed to update page objects: " + e.getMessage());
-        }
     }
 
     // --- Page Structure ---
