@@ -10,8 +10,7 @@
     <packaging>jar</packaging>
 
     <name>Playwright Cucumber TestNG Java</name>
-    <description>Playwright + Cucumber BDD test suite with TestNG runner, demonstrating autoheal-locator-java
-    </description>
+    <description>Playwright + Cucumber BDD test suite with TestNG runner, demonstrating automation-auto-heal-java</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -44,13 +43,6 @@
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
             <version>${playwright.version}</version>
-        </dependency>
-
-        <!-- AutoHeal Locator (via JitPack from GitHub) -->
-        <dependency>
-            <groupId>com.github.MuhammadSakti</groupId>
-            <artifactId>autoheal-locator</artifactId>
-            <version>1.0.0</version>
         </dependency>
 
         <!-- Auto-Heal v2 (via JitPack from GitHub) -->
@@ -97,18 +89,6 @@
             <version>${logback.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.11.0</version>
-        </dependency>
-
-        <!-- dotenv (required by autoheal-locator) -->
-        <dependency>
-            <groupId>io.github.cdimascio</groupId>
-            <artifactId>dotenv-java</artifactId>
-            <version>3.0.0</version>
-        </dependency>
     </dependencies>
 
     <build>
