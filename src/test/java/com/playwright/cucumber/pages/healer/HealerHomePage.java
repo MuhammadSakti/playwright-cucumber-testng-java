@@ -8,6 +8,7 @@ import com.playwright.cucumber.pages.HomePage;
 /**
  * Healer version of HomePage that extends the original page object.
  * Reuses all inherited locators and wraps them with auto-heal.
+ * Passes 'this' as pageObject so the library can resolve source file and line via reflection.
  */
 public class HealerHomePage extends HomePage {
 
@@ -21,152 +22,152 @@ public class HealerHomePage extends HomePage {
     // --- Heal static locators (inherited fields) ---
 
     public Locator healPageTitle() {
-        return healer.find(pageTitle, "Main page title 'RPG ITEMS FINDER'");
+        return healer.find(pageTitle, "Main page title 'RPG ITEMS FINDER'", this);
     }
 
     public Locator healPageSubtitle() {
-        return healer.find(pageSubtitle, "Page subtitle text below the main title");
+        return healer.find(pageSubtitle, "Page subtitle text below the main title", this);
     }
 
     public Locator healSearchInput() {
-        return healer.find(searchInput, "Search input field for filtering items");
+        return healer.find(searchInput, "Search input field for filtering items", this);
     }
 
     public Locator healSearchClearButton() {
-        return healer.find(searchClearButton, "Clear/X button inside search input");
+        return healer.find(searchClearButton, "Clear/X button inside search input", this);
     }
 
     public Locator healStatsBar() {
-        return healer.find(statsBar, "Stats bar showing item counts");
+        return healer.find(statsBar, "Stats bar showing item counts", this);
     }
 
     public Locator healTotalCount() {
-        return healer.find(totalCount, "Total items count number in stats bar");
+        return healer.find(totalCount, "Total items count number in stats bar", this);
     }
 
     public Locator healShowingCount() {
-        return healer.find(showingCount, "Currently showing items count in stats bar");
+        return healer.find(showingCount, "Currently showing items count in stats bar", this);
     }
 
     public Locator healLegendaryCount() {
-        return healer.find(legendaryCount, "Legendary items count in stats bar");
+        return healer.find(legendaryCount, "Legendary items count in stats bar", this);
     }
 
     public Locator healFilterPanel() {
-        return healer.find(filterPanel, "Filter panel containing category, rarity, and level filters");
+        return healer.find(filterPanel, "Filter panel containing category, rarity, and level filters", this);
     }
 
     public Locator healSortSelect() {
-        return healer.find(sortSelect, "Sort by dropdown select");
+        return healer.find(sortSelect, "Sort by dropdown select", this);
     }
 
     public Locator healResetFiltersButton() {
-        return healer.find(resetFiltersButton, "Reset all filters button");
+        return healer.find(resetFiltersButton, "Reset all filters button", this);
     }
 
     public Locator healMinLevelInput() {
-        return healer.find(minLevelInput, "Minimum level filter input field");
+        return healer.find(minLevelInput, "Minimum level filter input field", this);
     }
 
     public Locator healMaxLevelInput() {
-        return healer.find(maxLevelInput, "Maximum level filter input field");
+        return healer.find(maxLevelInput, "Maximum level filter input field", this);
     }
 
     public Locator healItemsGrid() {
-        return healer.find(itemsGrid, "Grid container displaying all item cards");
+        return healer.find(itemsGrid, "Grid container displaying all item cards", this);
     }
 
     public Locator healEmptyState() {
-        return healer.find(emptyState, "Empty state message when no items match filters");
+        return healer.find(emptyState, "Empty state message when no items match filters", this);
     }
 
     public Locator healModal() {
-        return healer.find(modal, "Item detail modal dialog");
+        return healer.find(modal, "Item detail modal dialog", this);
     }
 
     public Locator healModalItemName() {
-        return healer.find(modalItemName, "Item name in detail modal");
+        return healer.find(modalItemName, "Item name in detail modal", this);
     }
 
     public Locator healModalCloseButton() {
-        return healer.find(modalCloseButton, "Close button (X) in item detail modal");
+        return healer.find(modalCloseButton, "Close button (X) in item detail modal", this);
     }
 
     public Locator healModalAddToCart() {
-        return healer.find(modalAddToCart, "Add to Cart button in item detail modal");
+        return healer.find(modalAddToCart, "Add to Cart button in item detail modal", this);
     }
 
     public Locator healQuantityIncrease() {
-        return healer.find(quantityIncrease, "Plus/increase quantity button in modal");
+        return healer.find(quantityIncrease, "Plus/increase quantity button in modal", this);
     }
 
     public Locator healQuantityDecrease() {
-        return healer.find(quantityDecrease, "Minus/decrease quantity button in modal");
+        return healer.find(quantityDecrease, "Minus/decrease quantity button in modal", this);
     }
 
     public Locator healQuantityValue() {
-        return healer.find(quantityValue, "Current quantity number display in modal");
+        return healer.find(quantityValue, "Current quantity number display in modal", this);
     }
 
     public Locator healModalTotalPrice() {
-        return healer.find(modalTotalPrice, "Total price display in item detail modal");
+        return healer.find(modalTotalPrice, "Total price display in item detail modal", this);
     }
 
     public Locator healModalEffectsList() {
-        return healer.find(modalEffectsList, "List of item effects in detail modal");
+        return healer.find(modalEffectsList, "List of item effects in detail modal", this);
     }
 
     public Locator healModalStatDamage() {
-        return healer.find(modalStatDamage, "Damage stat value in item detail modal");
+        return healer.find(modalStatDamage, "Damage stat value in item detail modal", this);
     }
 
     public Locator healModalStatDefense() {
-        return healer.find(modalStatDefense, "Defense stat value in item detail modal");
+        return healer.find(modalStatDefense, "Defense stat value in item detail modal", this);
     }
 
     public Locator healModalStatSpeed() {
-        return healer.find(modalStatSpeed, "Speed stat value in item detail modal");
+        return healer.find(modalStatSpeed, "Speed stat value in item detail modal", this);
     }
 
     public Locator healToast() {
-        return healer.find(toast, "Toast notification container");
+        return healer.find(toast, "Toast notification container", this);
     }
 
     public Locator healToastMessage() {
-        return healer.find(toastMessage, "Toast notification message text");
+        return healer.find(toastMessage, "Toast notification message text", this);
     }
 
     // --- Heal header/nav locators (inherited from BasePage) ---
 
     public Locator healHeader() {
-        return healer.find(header, "Page header containing navigation");
+        return healer.find(header, "Page header containing navigation", this);
     }
 
     public Locator healFooter() {
-        return healer.find(footer, "Page footer section");
+        return healer.find(footer, "Page footer section", this);
     }
 
     public Locator healLogoLink() {
-        return healer.find(logoLink, "Logo/brand link that navigates to home page");
+        return healer.find(logoLink, "Logo/brand link that navigates to home page", this);
     }
 
     public Locator healNavHome() {
-        return healer.find(navHome, "Home navigation link in header");
+        return healer.find(navHome, "Home navigation link in header", this);
     }
 
     public Locator healNavInventory() {
-        return healer.find(navInventory, "Inventory navigation link in header");
+        return healer.find(navInventory, "Inventory navigation link in header", this);
     }
 
     public Locator healNavAbout() {
-        return healer.find(navAbout, "About navigation link in header");
+        return healer.find(navAbout, "About navigation link in header", this);
     }
 
     public Locator healCartBadge() {
-        return healer.find(cartBadge, "Cart item count badge on cart icon");
+        return healer.find(cartBadge, "Cart item count badge on cart icon", this);
     }
 
-    // --- Heal dynamic locators ---
+    // --- Heal dynamic locators (no field match, source will be null) ---
 
     public Locator healCategoryCheckbox(String category) {
         return healer.find(categoryCheckbox(category), "Checkbox to filter by " + category + " category");

@@ -1,9 +1,9 @@
 package com.playwright.cucumber.pages;
 
-import com.playwright.cucumber.config.TestConfig;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import com.playwright.cucumber.config.TestConfig;
 
 public abstract class BasePage {
 

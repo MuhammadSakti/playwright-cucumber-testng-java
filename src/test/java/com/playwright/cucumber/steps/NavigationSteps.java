@@ -4,8 +4,8 @@ import com.playwright.cucumber.config.TestConfig;
 import com.playwright.cucumber.hooks.PlaywrightHooks;
 import com.playwright.cucumber.pages.HomePage;
 import io.cucumber.java.Before;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 

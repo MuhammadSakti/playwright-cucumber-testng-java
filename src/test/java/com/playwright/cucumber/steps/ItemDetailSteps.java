@@ -3,8 +3,8 @@ package com.playwright.cucumber.steps;
 import com.playwright.cucumber.hooks.PlaywrightHooks;
 import com.playwright.cucumber.pages.HomePage;
 import io.cucumber.java.Before;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;

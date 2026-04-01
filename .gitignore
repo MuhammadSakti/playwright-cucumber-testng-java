@@ -6,3 +6,5 @@ target/
 autoheal-cache/
 autoheal-reports/
 test-results/
+.env.example
+.claude/CLAUDE.md

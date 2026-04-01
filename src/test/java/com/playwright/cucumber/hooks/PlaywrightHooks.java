@@ -1,12 +1,8 @@
 package com.playwright.cucumber.hooks;
 
-import com.playwright.cucumber.config.TestConfig;
 import com.microsoft.playwright.*;
-import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
-import io.cucumber.java.Scenario;
+import com.playwright.cucumber.config.TestConfig;
+import io.cucumber.java.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
