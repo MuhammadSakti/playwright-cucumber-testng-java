@@ -76,7 +76,7 @@ src/test/
 | Cucumber HTML       | `target/cucumber-reports/cucumber.html` |
 | Cucumber JSON       | `target/cucumber-reports/cucumber.json` |
 | Failure Screenshots | `target/screenshots/`                   |
-| AutoHeal Reports    | `./autoheal-reports/`                   |
+| AutoHeal Reports    | `./target/autoheal-reports/`            |
 
 ## Configuration
 

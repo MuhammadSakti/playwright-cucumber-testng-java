@@ -55,7 +55,8 @@ public class HealerSaktiHomePageTest {
         homePage = new HealerHomePage(page, healer);
         homePage.open();
 
-        // Batch mode: collect all broken locators, then heal in one AI call
+        // Capture DOM once, then batch heal all broken locators in one AI call
+        healer.captureDom();
         healer.startBatch();
     }
 
