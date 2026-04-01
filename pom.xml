@@ -49,7 +49,7 @@
         <dependency>
             <groupId>com.github.MuhammadSakti</groupId>
             <artifactId>automation-auto-heal-java</artifactId>
-            <version>v1.0.9</version>
+            <version>v1.0.10</version>
         </dependency>
 
         <!-- Cucumber -->
