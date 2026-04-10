@@ -1,15 +1,6 @@
 package com.playwright.cucumber.pages.healer;
 
-import com.autoheal.PlaywrightAutoHeal;
-import com.autoheal.ai.FailureContext;
-import com.autoheal.config.AutoHealConfig;
-import com.microsoft.playwright.*;
-import com.playwright.cucumber.config.TestConfig;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 /**
  * Healer test for HomePage — navigates once, heals all locators in one batch AI call.
@@ -17,73 +8,19 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
  * <p>
  * Run with: mvn test -DsuiteXmlFile=testng-healersakti.xml
  */
-public class HealerHomePageTest {
+public class HealerHomePageTest extends HealerBaseTest {
 
-    private static Playwright playwright;
-    private static Browser browser;
-    private static BrowserContext context;
-    private static Page page;
-    private static PlaywrightAutoHeal healer;
-    private static HealerHomePage homePage;
-    private static String setupError;
+    private HealerHomePage homePage;
 
-    @BeforeClass
-    public void launchBrowser() {
-        playwright = Playwright.create();
-
-        String browserType = TestConfig.getBrowser();
-        boolean headless = TestConfig.isHeadless();
-
-        BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions()
-                .setHeadless(headless);
-
-        browser = switch (browserType.toLowerCase()) {
-            case "firefox" -> playwright.firefox().launch(launchOptions);
-            case "webkit" -> playwright.webkit().launch(launchOptions);
-            default -> playwright.chromium().launch(launchOptions);
-        };
-
-        context = browser.newContext(new Browser.NewContextOptions()
-                .setViewportSize(1440, 900));
-        context.setDefaultTimeout(10000);
-        page = context.newPage();
-
-        healer = PlaywrightAutoHeal.builder()
-                .config(AutoHealConfig.fromEnv())
-                .page(page)
-                .reportName("HomePage")
-                .build();
-
-        try {
-            homePage = new HealerHomePage(page, healer);
-            homePage.open();
-
-            // Capture DOM once, then batch heal all broken locators in one AI call
-            healer.captureDom();
-            healer.startBatch();
-        } catch (Exception e) {
-            setupError = e.toString();
-            throw e;
-        }
+    @Override
+    protected String reportName() {
+        return "HomePage";
     }
 
-    @AfterClass(alwaysRun = true)
-    public void closeBrowser() {
-        if (healer != null) {
-            if (setupError == null) healer.flushBatch();
-            if (setupError != null) {
-                try {
-                    healer.analyzeFailure(setupError);
-                } catch (Exception e) {
-                    System.err.println("[AutoHeal] Screenshot failed, analyzing error log only: " + e.getMessage());
-                    healer.analyzeFailure(FailureContext.builder().errorLog(setupError).build());
-                }
-            }
-            healer.finish();
-        }
-        if (context != null) context.close();
-        if (browser != null) browser.close();
-        if (playwright != null) playwright.close();
+    @Override
+    protected void navigateToPage() {
+        homePage = new HealerHomePage(page, healer);
+        homePage.open();
     }
 
     // --- Header / Navigation ---
