@@ -11,7 +11,8 @@ import org.testng.annotations.DataProvider;
                 "pretty",
                 "html:target/cucumber-reports/cucumber.html",
                 "json:target/cucumber-reports/cucumber.json"
-        }
+        },
+        tags = "@inventory"
 )
 public class RunCucumberTest extends AbstractTestNGCucumberTests {
 

@@ -3,7 +3,17 @@
 <suite name="HealerSakti AutoHeal v2 Test Suite" verbose="1">
     <test name="HealerSakti Home Page Tests">
         <classes>
-            <class name="com.playwright.cucumber.healer.HealerSaktiHomePageTest"/>
+            <class name="com.playwright.cucumber.pages.healer.HealerHomePageTest"/>
+        </classes>
+    </test>
+    <test name="HealerSakti Inventory Page Tests">
+        <classes>
+            <class name="com.playwright.cucumber.pages.healer.HealerInventoryPageTest"/>
+        </classes>
+    </test>
+    <test name="HealerSakti Profile Page Tests">
+        <classes>
+            <class name="com.playwright.cucumber.pages.healer.HealerProfilePageTest"/>
         </classes>
     </test>
 </suite>

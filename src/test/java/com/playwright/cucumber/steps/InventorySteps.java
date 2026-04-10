@@ -14,7 +14,7 @@ public class InventorySteps {
 
     private InventoryPage inventoryPage;
 
-    @Before
+    @Before(order = 1)
     public void setup() {
         inventoryPage = new InventoryPage(PlaywrightHooks.getPage());
     }
@@ -22,6 +22,11 @@ public class InventorySteps {
     @Given("I am on the inventory page")
     public void iAmOnTheInventoryPage() {
         inventoryPage.open();
+    }
+
+    @When("I click the inventory nav link")
+    public void iClickTheInventoryNavLink() {
+        inventoryPage.navInventory.click();
     }
 
     @Then("the inventory title should be {string}")

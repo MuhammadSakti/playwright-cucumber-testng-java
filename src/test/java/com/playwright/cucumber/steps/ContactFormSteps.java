@@ -13,7 +13,7 @@ public class ContactFormSteps {
 
     private AboutPage aboutPage;
 
-    @Before
+    @Before(order = 1)
     public void setup() {
         aboutPage = new AboutPage(PlaywrightHooks.getPage());
     }

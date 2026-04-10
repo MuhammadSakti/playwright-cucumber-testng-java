@@ -27,7 +27,7 @@
         <!-- Test config -->
         <base.url>http://localhost:3000</base.url>
         <browser>chromium</browser>
-        <headless>true</headless>
+        <headless>false</headless>
     </properties>
 
     <repositories>
@@ -49,8 +49,9 @@
         <dependency>
             <groupId>com.github.MuhammadSakti</groupId>
             <artifactId>automation-auto-heal-java</artifactId>
-            <version>v1.0.12</version>
+            <version>v1.2.0</version>
         </dependency>
+
 
         <!-- Cucumber -->
         <dependency>

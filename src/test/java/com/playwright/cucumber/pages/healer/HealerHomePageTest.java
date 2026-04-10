@@ -1,10 +1,10 @@
-package com.playwright.cucumber.healer;
+package com.playwright.cucumber.pages.healer;
 
 import com.autoheal.PlaywrightAutoHeal;
+import com.autoheal.ai.FailureContext;
 import com.autoheal.config.AutoHealConfig;
 import com.microsoft.playwright.*;
 import com.playwright.cucumber.config.TestConfig;
-import com.playwright.cucumber.pages.healer.HealerHomePage;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,7 +17,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
  * <p>
  * Run with: mvn test -DsuiteXmlFile=testng-healersakti.xml
  */
-public class HealerSaktiHomePageTest {
+public class HealerHomePageTest {
 
     private static Playwright playwright;
     private static Browser browser;
@@ -25,6 +25,7 @@ public class HealerSaktiHomePageTest {
     private static Page page;
     private static PlaywrightAutoHeal healer;
     private static HealerHomePage homePage;
+    private static String setupError;
 
     @BeforeClass
     public void launchBrowser() {
@@ -50,21 +51,36 @@ public class HealerSaktiHomePageTest {
         healer = PlaywrightAutoHeal.builder()
                 .config(AutoHealConfig.fromEnv())
                 .page(page)
+                .reportName("HomePage")
                 .build();
 
-        homePage = new HealerHomePage(page, healer);
-        homePage.open();
+        try {
+            homePage = new HealerHomePage(page, healer);
+            homePage.open();
 
-        // Capture DOM once, then batch heal all broken locators in one AI call
-        healer.captureDom();
-        healer.startBatch();
+            // Capture DOM once, then batch heal all broken locators in one AI call
+            healer.captureDom();
+            healer.startBatch();
+        } catch (Exception e) {
+            setupError = e.toString();
+            throw e;
+        }
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void closeBrowser() {
-        // Flush batch — sends one AI call for all broken locators
-        healer.flushBatch();
-        if (healer != null) healer.finish();
+        if (healer != null) {
+            if (setupError == null) healer.flushBatch();
+            if (setupError != null) {
+                try {
+                    healer.analyzeFailure(setupError);
+                } catch (Exception e) {
+                    System.err.println("[AutoHeal] Screenshot failed, analyzing error log only: " + e.getMessage());
+                    healer.analyzeFailure(FailureContext.builder().errorLog(setupError).build());
+                }
+            }
+            healer.finish();
+        }
         if (context != null) context.close();
         if (browser != null) browser.close();
         if (playwright != null) playwright.close();

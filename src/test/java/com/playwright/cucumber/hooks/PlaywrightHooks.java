@@ -37,7 +37,7 @@ public class PlaywrightHooks {
         log.info("Launched {} browser (headless={})", browserType, headless);
     }
 
-    @Before
+    @Before(order = 0)
     public void createContext(Scenario scenario) {
         Browser.NewContextOptions contextOptions = new Browser.NewContextOptions()
                 .setViewportSize(1440, 900);

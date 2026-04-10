@@ -14,7 +14,7 @@ public class TestConfig {
 
     public static boolean isHeadless() {
         String headless = System.getProperty("headless",
-                System.getenv().getOrDefault("HEADLESS", "true"));
+                System.getenv().getOrDefault("HEADLESS", "false"));
         return Boolean.parseBoolean(headless);
     }
 }

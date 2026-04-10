@@ -14,7 +14,7 @@ public class HomePageSteps {
 
     private HomePage homePage;
 
-    @Before
+    @Before(order = 1)
     public void setup() {
         homePage = new HomePage(PlaywrightHooks.getPage());
     }
