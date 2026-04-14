@@ -24,21 +24,21 @@ public class AboutPage extends BasePage {
     public AboutPage(Page page) {
         super(page);
 
-        this.aboutTitle = byTestId("about-title");
-        this.aboutDescription = byTestId("about-description");
-        this.featuresSection = byTestId("features-section");
-        this.featureCatalog = byTestId("feature-catalog");
-        this.featureFilter = byTestId("feature-filter");
-        this.featureInteractive = byTestId("feature-interactive");
-        this.featureA11y = byTestId("feature-a11y");
-        this.contactSection = byTestId("contact-section");
-        this.contactForm = byTestId("contact-form");
-        this.nameInput = byTestId("contact-name-input");
-        this.emailInput = byTestId("contact-email-input");
-        this.messageInput = byTestId("contact-message-input");
-        this.submitButton = byTestId("contact-submit-button");
-        this.contactSuccess = byTestId("contact-success");
-        this.successMessage = byTestId("success-message");
+        this.aboutTitle = page.getByTestId("about-title");
+        this.aboutDescription = page.getByTestId("about-description");
+        this.featuresSection = page.getByTestId("features-section");
+        this.featureCatalog = page.getByTestId("feature-catalog");
+        this.featureFilter = page.getByTestId("feature-filter");
+        this.featureInteractive = page.getByTestId("feature-interactive");
+        this.featureA11y = page.getByTestId("feature-a11y");
+        this.contactSection = page.getByTestId("contact-section");
+        this.contactForm = page.getByTestId("contact-form");
+        this.nameInput = page.getByTestId("contact-name-input");
+        this.emailInput = page.getByTestId("contact-email-input");
+        this.messageInput = page.getByTestId("contact-message-input");
+        this.submitButton = page.getByTestId("contact-submit-button");
+        this.contactSuccess = page.getByTestId("contact-success");
+        this.successMessage = page.getByTestId("success-message");
     }
 
     public void open() {

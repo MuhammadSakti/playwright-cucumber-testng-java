@@ -31,23 +31,23 @@ public class LoginPage extends BasePage {
     public LoginPage(Page page) {
         super(page);
 
-        this.loginPage = byTestId("login-page");
-        this.loginTitle = byTestId("login-title");
+        this.loginPage = page.getByTestId("login-page");
+        this.loginTitle = page.getByTestId("login-title");
 
-        this.loginForm = byTestId("login-form");
-        this.usernameInput = byTestId("input-username");
-        this.passwordInput = byTestId("input-password");
-        this.togglePasswordButton = byTestId("btn-toggle-password");
-        this.loginButton = byTestId("btn-login");
-        this.loginError = byTestId("login-error");
+        this.loginForm = page.getByTestId("login-form");
+        this.usernameInput = page.getByTestId("input-username");
+        this.passwordInput = page.getByTestId("input-password");
+        this.togglePasswordButton = page.getByTestId("btn-toggle-password");
+        this.loginButton = page.getByTestId("btn-login");
+        this.loginError = page.getByTestId("login-error");
 
-        this.credentialsHint = byTestId("credentials-hint");
+        this.credentialsHint = page.getByTestId("credentials-hint");
 
-        this.headerUserName = byTestId("header-user-name");
+        this.headerUserName = page.getByTestId("header-user-name");
 
-        this.loggedInState = byTestId("logged-in-state");
-        this.welcomeMessage = byTestId("welcome-message");
-        this.logoutButton = byTestId("btn-logout");
+        this.loggedInState = page.getByTestId("logged-in-state");
+        this.welcomeMessage = page.getByTestId("welcome-message");
+        this.logoutButton = page.getByTestId("btn-logout");
     }
 
     public void open() {
@@ -61,6 +61,6 @@ public class LoginPage extends BasePage {
     }
 
     public Locator credentialRow(String username) {
-        return byTestId("credential-" + username);
+        return page.getByTestId("credential-" + username);
     }
 }

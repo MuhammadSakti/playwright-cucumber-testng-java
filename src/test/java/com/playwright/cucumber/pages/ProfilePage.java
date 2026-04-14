@@ -29,23 +29,23 @@ public class ProfilePage extends BasePage {
     public ProfilePage(Page page) {
         super(page);
 
-        this.profilePage = byTestId("profile-page");
-        this.profileTitle = byTestId("profile-title");
+        this.profilePage = page.getByTestId("profile-page");
+        this.profileTitle = page.getByTestId("profile-title");
 
-        this.profileNotLoggedIn = byTestId("profile-not-logged-in");
-        this.goToLoginButton = byTestId("btn-go-to-login");
+        this.profileNotLoggedIn = page.getByTestId("profile-not-logged-in");
+        this.goToLoginButton = page.getByTestId("btn-go-to-login");
 
-        this.userCard = byTestId("user-card");
-        this.userAvatar = byTestId("header-user-avatar");
-        this.profileDisplayName = byTestId("profile-display-name");
-        this.profileStats = byTestId("profile-stats");
-        this.profileRole = byTestId("profile-role");
-        this.profileLevel = byTestId("profile-level");
-        this.profileGuild = byTestId("profile-guild");
-        this.profileJoinDate = byTestId("profile-join-date");
-        this.profileBioSection = byTestId("profile-bio-section");
-        this.profileBio = byTestId("profile-bio");
-        this.logoutButton = byTestId("btn-logout");
+        this.userCard = page.getByTestId("user-card");
+        this.userAvatar = page.getByTestId("header-user-avatar");
+        this.profileDisplayName = page.getByTestId("profile-display-name");
+        this.profileStats = page.getByTestId("profile-stats");
+        this.profileRole = page.getByTestId("profile-role");
+        this.profileLevel = page.getByTestId("profile-level");
+        this.profileGuild = page.getByTestId("profile-guild");
+        this.profileJoinDate = page.getByTestId("profile-join-date");
+        this.profileBioSection = page.getByTestId("profile-bio-section");
+        this.profileBio = page.getByTestId("profile-bio");
+        this.logoutButton = page.getByTestId("btn-logout");
     }
 
     public void open() {

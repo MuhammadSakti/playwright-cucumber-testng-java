@@ -57,52 +57,52 @@ public class HomePage extends BasePage {
         super(page);
 
         // Hero
-        this.pageTitle = byTestId("page-title");
-        this.pageSubtitle = byTestId("page-subtitle");
+        this.pageTitle = page.getByTestId("page-title");
+        this.pageSubtitle = page.getByTestId("page-subtitle");
 
         // Search
-        this.searchInput = byTestId("search-input");
-        this.searchClearButton = byTestId("search-clear-button");
+        this.searchInput = page.getByTestId("search-input");
+        this.searchClearButton = page.getByTestId("search-clear-button");
 
         // Stats bar
-        this.statsBar = byTestId("stats-bar");
-        this.totalCount = byTestId("total-count");
-        this.showingCount = byTestId("showing-count");
-        this.legendaryCount = byTestId("legendary-count");
+        this.statsBar = page.getByTestId("stats-bar");
+        this.totalCount = page.getByTestId("total-count");
+        this.showingCount = page.getByTestId("showing-count");
+        this.legendaryCount = page.getByTestId("legendary-count");
 
         // Filter panel
-        this.filterPanel = byTestId("filter-panel");
-        this.filterToggle = byTestId("filter-toggle");
-        this.filterContent = byTestId("filter-content");
-        this.sortSelect = byTestId("sort-select");
-        this.resetFiltersButton = byTestId("reset-filters-button");
-        this.minLevelInput = byTestId("min-level-input");
-        this.maxLevelInput = byTestId("max-level-input");
+        this.filterPanel = page.getByTestId("filter-panel");
+        this.filterToggle = page.getByTestId("filter-toggle");
+        this.filterContent = page.getByTestId("filter-content");
+        this.sortSelect = page.getByTestId("sort-select");
+        this.resetFiltersButton = page.getByTestId("reset-filters-button");
+        this.minLevelInput = page.getByTestId("min-level-input");
+        this.maxLevelInput = page.getByTestId("max-level-input");
 
         // Items grid
-        this.itemsGrid = byTestId("items-grid");
-        this.emptyState = byTestId("empty-state");
+        this.itemsGrid = page.getByTestId("items-grid");
+        this.emptyState = page.getByTestId("empty-state");
 
         // Modal
-        this.modal = byTestId("item-detail-modal");
-        this.modalItemName = byTestId("modal-item-name");
-        this.modalItemDescription = byTestId("modal-item-description");
-        this.modalItemRarity = byTestId("modal-item-rarity");
-        this.modalCloseButton = byTestId("modal-close-button");
-        this.modalAddToCart = byTestId("modal-add-to-cart");
-        this.quantityIncrease = byTestId("quantity-increase");
-        this.quantityDecrease = byTestId("quantity-decrease");
-        this.quantityValue = byTestId("quantity-value");
-        this.modalTotalPrice = byTestId("modal-total-price");
-        this.modalEffectsList = byTestId("modal-effects-list");
-        this.modalStatDamage = byTestId("modal-stat-damage");
-        this.modalStatDefense = byTestId("modal-stat-defense");
-        this.modalStatSpeed = byTestId("modal-stat-speed");
+        this.modal = page.getByTestId("item-detail-modal");
+        this.modalItemName = page.getByTestId("modal-item-name");
+        this.modalItemDescription = page.getByTestId("modal-item-description");
+        this.modalItemRarity = page.getByTestId("modal-item-rarity");
+        this.modalCloseButton = page.getByTestId("modal-close-button");
+        this.modalAddToCart = page.getByTestId("modal-add-to-cart");
+        this.quantityIncrease = page.getByTestId("quantity-increase");
+        this.quantityDecrease = page.getByTestId("quantity-decrease");
+        this.quantityValue = page.getByTestId("quantity-value");
+        this.modalTotalPrice = page.getByTestId("modal-total-price");
+        this.modalEffectsList = page.getByTestId("modal-effects-list");
+        this.modalStatDamage = page.getByTestId("modal-stat-damage");
+        this.modalStatDefense = page.getByTestId("modal-stat-defense");
+        this.modalStatSpeed = page.getByTestId("modal-stat-speed");
 
         // Toast
-        this.toast = byTestId("toast-notification");
-        this.toastMessage = byTestId("toast-message");
-        this.toastClose = byTestId("toast-close");
+        this.toast = page.getByTestId("toast-notification");
+        this.toastMessage = page.getByTestId("toast-message");
+        this.toastClose = page.getByTestId("toast-close");
     }
 
     public void open() {
@@ -111,39 +111,39 @@ public class HomePage extends BasePage {
 
     // Dynamic locators (require parameter)
     public Locator categoryCheckbox(String category) {
-        return byTestId("category-checkbox-" + category);
+        return page.getByTestId("category-checkbox-" + category);
     }
 
     public Locator rarityCheckbox(String rarity) {
-        return byTestId("rarity-checkbox-" + rarity);
+        return page.getByTestId("rarity-checkbox-" + rarity);
     }
 
     public Locator itemCard(String itemId) {
-        return byTestId("item-card-" + itemId);
+        return page.getByTestId("item-card-" + itemId);
     }
 
     public Locator itemName(String itemId) {
-        return byTestId("item-name-" + itemId);
+        return page.getByTestId("item-name-" + itemId);
     }
 
     public Locator itemPrice(String itemId) {
-        return byTestId("item-price-" + itemId);
+        return page.getByTestId("item-price-" + itemId);
     }
 
     public Locator addToCartButton(String itemId) {
-        return byTestId("add-to-cart-" + itemId);
+        return page.getByTestId("add-to-cart-" + itemId);
     }
 
     public Locator viewDetailsButton(String itemId) {
-        return byTestId("view-details-" + itemId);
+        return page.getByTestId("view-details-" + itemId);
     }
 
     public Locator rarityBadge(String itemId) {
-        return byTestId("rarity-badge-" + itemId);
+        return page.getByTestId("rarity-badge-" + itemId);
     }
 
     public Locator itemStats(String itemId) {
-        return byTestId("item-stats-" + itemId);
+        return page.getByTestId("item-stats-" + itemId);
     }
 
     public int getDisplayedItemCount() {

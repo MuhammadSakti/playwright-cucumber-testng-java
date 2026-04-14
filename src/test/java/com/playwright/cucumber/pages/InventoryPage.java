@@ -17,14 +17,14 @@ public class InventoryPage extends BasePage {
     public InventoryPage(Page page) {
         super(page);
 
-        this.inventoryTitle = byTestId("inventory-title");
-        this.inventoryList = byTestId("inventory-list");
-        this.inventoryEmpty = byTestId("inventory-empty");
-        this.inventorySummary = byTestId("inventory-summary");
-        this.summaryTotalItems = byTestId("summary-total-items");
-        this.summaryEquipped = byTestId("summary-equipped");
-        this.summaryTotalDamage = byTestId("summary-total-damage");
-        this.summaryTotalDefense = byTestId("summary-total-defense");
+        this.inventoryTitle = page.getByTestId("inventory-title");
+        this.inventoryList = page.getByTestId("inventory-list");
+        this.inventoryEmpty = page.getByTestId("inventory-empty");
+        this.inventorySummary = page.getByTestId("inventory-summary");
+        this.summaryTotalItems = page.getByTestId("summary-total-items");
+        this.summaryEquipped = page.getByTestId("summary-equipped");
+        this.summaryTotalDamage = page.getByTestId("summary-total-damage");
+        this.summaryTotalDefense = page.getByTestId("summary-total-defense");
     }
 
     public void open() {
@@ -33,19 +33,19 @@ public class InventoryPage extends BasePage {
 
     // Dynamic locators
     public Locator inventoryItem(String itemId) {
-        return byTestId("inventory-item-" + itemId);
+        return page.getByTestId("inventory-item-" + itemId);
     }
 
     public Locator inventoryItemName(String itemId) {
-        return byTestId("inventory-item-name-" + itemId);
+        return page.getByTestId("inventory-item-name-" + itemId);
     }
 
     public Locator equipButton(String itemId) {
-        return byTestId("equip-button-" + itemId);
+        return page.getByTestId("equip-button-" + itemId);
     }
 
     public Locator removeButton(String itemId) {
-        return byTestId("remove-button-" + itemId);
+        return page.getByTestId("remove-button-" + itemId);
     }
 
     public int getInventoryItemCount() {

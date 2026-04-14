@@ -2,7 +2,6 @@ package com.playwright.cucumber.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.AriaRole;
 import com.playwright.cucumber.config.TestConfig;
 
 public abstract class BasePage {
@@ -25,48 +24,21 @@ public abstract class BasePage {
     public BasePage(Page page) {
         this.page = page;
 
-        this.header = byTestId("header");
-        this.logoLink = byTestId("logo-link");
-        this.navHome = byTestId("nav-home");
-        this.navInventory = byTestId("nav-inventory");
-        this.navAbout = byTestId("nav-about");
-        this.cartButton = byTestId("cart-button");
-        this.cartBadge = byTestId("cart-badge");
-        this.profileButton = byTestId("profile-button");
-        this.mobileMenuToggle = byTestId("mobile-menu-toggle");
-        this.mobileMenu = byTestId("mobile-menu");
-        this.footer = byTestId("footer");
+        this.header = page.getByTestId("app-header");
+        this.logoLink = page.getByTestId("brand-link");
+        this.navHome = page.getByTestId("link-home");
+        this.navInventory = page.getByTestId("link-about");
+        this.navAbout = page.getByTestId("link-about");
+        this.cartButton = page.getByTestId("cart-button");
+        this.cartBadge = page.getByTestId("btn-shopping-cart");
+        this.profileButton = page.getByTestId("profile-button");
+        this.mobileMenuToggle = page.getByTestId("mobile-menu-toggle");
+        this.mobileMenu = page.getByTestId("mobile-menu");
+        this.footer = page.getByTestId("footer");
     }
 
     protected void navigate(String path) {
         page.navigate(TestConfig.getBaseUrl() + path);
     }
 
-    protected Locator byTestId(String testId) {
-        return page.getByTestId(testId);
-    }
-
-    protected Locator byRole(AriaRole role, String name) {
-        return page.getByRole(role, new Page.GetByRoleOptions().setName(name));
-    }
-
-    protected Locator byId(String id) {
-        return page.locator("#" + id);
-    }
-
-    protected Locator byCss(String css) {
-        return page.locator(css);
-    }
-
-    protected Locator byLabel(String label) {
-        return page.getByLabel(label);
-    }
-
-    protected Locator byText(String text) {
-        return page.getByText(text);
-    }
-
-    protected Locator byPlaceholder(String placeholder) {
-        return page.getByPlaceholder(placeholder);
-    }
 }

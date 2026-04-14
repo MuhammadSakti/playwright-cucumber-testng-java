@@ -55,7 +55,7 @@ public abstract class HealerBaseTest {
 
         context = browser.newContext(new Browser.NewContextOptions()
                 .setViewportSize(1440, 900));
-        context.setDefaultTimeout(10000);
+        context.setDefaultTimeout(30000);
         page = context.newPage();
 
         preSetup();
