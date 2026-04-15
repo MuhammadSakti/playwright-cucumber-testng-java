@@ -31,17 +31,17 @@ public class LoginPage extends BasePage {
     public LoginPage(Page page) {
         super(page);
 
-        this.loginPage = page.getByTestId("login-page");
-        this.loginTitle = page.getByTestId("login-title");
+        this.loginPage = page.getByTestId("auth-page");
+        this.loginTitle = page.getByTestId("auth-heading");
 
-        this.loginForm = page.getByTestId("login-form");
-        this.usernameInput = page.getByTestId("input-username");
-        this.passwordInput = page.getByTestId("input-password");
-        this.togglePasswordButton = page.getByTestId("btn-toggle-password");
-        this.loginButton = page.getByTestId("btn-login");
+        this.loginForm = page.getByTestId("authentication-form");
+        this.usernameInput = page.getByTestId("user-field");
+        this.passwordInput = page.getByTestId("pass-field");
+        this.togglePasswordButton = page.getByTestId("toggle-pass-visibility");
+        this.loginButton = page.getByTestId("submit-login");
         this.loginError = page.getByTestId("login-error");
 
-        this.credentialsHint = page.getByTestId("credentials-hint");
+        this.credentialsHint = page.getByTestId("test-accounts-info");
 
         this.headerUserName = page.getByTestId("header-user-name");
 

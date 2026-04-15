@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="HealerSakti AutoHeal v2 Test Suite" verbose="1">
+    <test name="HealerSakti Login Page Tests">
+        <classes>
+            <class name="com.playwright.cucumber.pages.healer.HealerLoginPageTest"/>
+        </classes>
+    </test>
     <test name="HealerSakti Home Page Tests">
         <classes>
             <class name="com.playwright.cucumber.pages.healer.HealerHomePageTest"/>
