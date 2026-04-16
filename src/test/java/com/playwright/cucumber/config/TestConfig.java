@@ -1,20 +1,43 @@
 package com.playwright.cucumber.config;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class TestConfig {
 
+    private static final Properties props = new Properties();
+
+    static {
+        try (InputStream is = TestConfig.class.getClassLoader()
+                .getResourceAsStream("test.properties")) {
+            if (is != null) {
+                props.load(is);
+            }
+        } catch (IOException e) {
+            // ignore — properties file is optional
+        }
+    }
+
+    private static String resolve(String envKey, String propKey, String defaultValue) {
+        String sysEnv = System.getenv(envKey);
+        if (sysEnv != null && !sysEnv.isEmpty()) return sysEnv;
+        String sysProp = System.getProperty(propKey);
+        if (sysProp != null && !sysProp.isEmpty()) return sysProp;
+        String val = props.getProperty(propKey);
+        if (val != null && !val.isEmpty()) return val;
+        return defaultValue;
+    }
+
     public static String getBaseUrl() {
-        return System.getProperty("base.url",
-                System.getenv().getOrDefault("BASE_URL", "http://localhost:3000"));
+        return resolve("BASE_URL", "base.url", "http://localhost:3000");
     }
 
     public static String getBrowser() {
-        return System.getProperty("browser",
-                System.getenv().getOrDefault("BROWSER", "chromium"));
+        return resolve("BROWSER", "browser", "chromium");
     }
 
     public static boolean isHeadless() {
-        String headless = System.getProperty("headless",
-                System.getenv().getOrDefault("HEADLESS", "false"));
-        return Boolean.parseBoolean(headless);
+        return Boolean.parseBoolean(resolve("HEADLESS", "headless", "false"));
     }
 }

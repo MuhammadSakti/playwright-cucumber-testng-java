@@ -3,6 +3,7 @@ target/
 *.iml
 .DS_Store
 .env
+**/autoheal.properties
 autoheal-cache/
 autoheal-reports/
 test-results/

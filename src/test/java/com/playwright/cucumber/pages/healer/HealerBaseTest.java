@@ -58,15 +58,14 @@ public abstract class HealerBaseTest {
         context.setDefaultTimeout(30000);
         page = context.newPage();
 
-        preSetup();
-
         healer = PlaywrightAutoHeal.builder()
-                .config(AutoHealConfig.fromEnv())
+                .config(AutoHealConfig.load())
                 .page(page)
                 .reportName(reportName())
                 .build();
 
         try {
+            preSetup();
             navigateToPage();
 
             // Capture DOM once, then batch heal all broken locators in one AI call
