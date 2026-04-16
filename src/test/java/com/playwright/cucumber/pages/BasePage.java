@@ -27,7 +27,7 @@ public abstract class BasePage {
         this.header = page.getByTestId("app-header");
         this.logoLink = page.getByTestId("brand-link");
         this.navHome = page.getByTestId("link-home");
-        this.navInventory = page.getByTestId("link-about");
+        this.navInventory = page.getByTestId("link-inventory");
         this.navAbout = page.getByTestId("link-about");
         this.cartButton = page.getByTestId("cart-button");
         this.cartBadge = page.getByTestId("btn-shopping-cart");

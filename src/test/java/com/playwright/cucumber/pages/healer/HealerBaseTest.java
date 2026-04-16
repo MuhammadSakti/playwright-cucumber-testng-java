@@ -104,7 +104,7 @@ public abstract class HealerBaseTest {
     @AfterSuite(alwaysRun = true)
     public void generateReportDashboard() {
         if (DASHBOARD_GENERATED.compareAndSet(false, true)) {
-            PlaywrightAutoHeal.generateReportDashboard(AutoHealConfig.fromEnv());
+            PlaywrightAutoHeal.generateReportDashboard(AutoHealConfig.load());
         }
     }
 }
