@@ -59,10 +59,6 @@ public class HealerInventoryPage extends InventoryPage {
         return healer.find(header, "Page header containing navigation", this);
     }
 
-    public Locator healFooter() {
-        return healer.find(footer, "Page footer section", this);
-    }
-
     public Locator healNavHome() {
         return healer.find(navHome, "Home navigation link in header", this);
     }

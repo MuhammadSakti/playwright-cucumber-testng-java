@@ -79,10 +79,6 @@ public class HealerLoginPage extends LoginPage {
         return healer.find(header, "Page header containing navigation", this);
     }
 
-    public Locator healFooter() {
-        return healer.find(footer, "Page footer section", this);
-    }
-
     public Locator healLogoLink() {
         return healer.find(logoLink, "Logo/brand link that navigates to home page", this);
     }

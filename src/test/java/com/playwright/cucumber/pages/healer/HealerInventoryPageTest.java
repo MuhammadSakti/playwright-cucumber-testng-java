@@ -41,11 +41,6 @@ public class HealerInventoryPageTest extends HealerBaseTest {
     }
 
     @Test
-    public void healFooter() {
-        inventoryPage.healFooter();
-    }
-
-    @Test
     public void healNavHome() {
         inventoryPage.healNavHome();
     }

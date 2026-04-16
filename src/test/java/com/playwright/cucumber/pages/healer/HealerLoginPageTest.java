@@ -31,11 +31,6 @@ public class HealerLoginPageTest extends HealerBaseTest {
     }
 
     @Test
-    public void healFooter() {
-        loginPage.healFooter();
-    }
-
-    @Test
     public void healLogoLink() {
         loginPage.healLogoLink();
     }

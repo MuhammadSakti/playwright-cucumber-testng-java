@@ -39,11 +39,6 @@ public class HealerProfilePageTest extends HealerBaseTest {
     }
 
     @Test
-    public void healFooter() {
-        profilePage.healFooter();
-    }
-
-    @Test
     public void healNavHome() {
         profilePage.healNavHome();
     }

@@ -53,6 +53,9 @@ public class HomePage extends BasePage {
     public final Locator toastMessage;
     public final Locator toastClose;
 
+    // Footer (Home page only)
+    public final Locator footer;
+
     public HomePage(Page page) {
         super(page);
 
@@ -103,6 +106,9 @@ public class HomePage extends BasePage {
         this.toast = page.getByTestId("toast-notification");
         this.toastMessage = page.getByTestId("toast-message");
         this.toastClose = page.getByTestId("toast-close");
+
+        // Footer (Home page only)
+        this.footer = page.getByTestId("footer");
     }
 
     public void open() {
