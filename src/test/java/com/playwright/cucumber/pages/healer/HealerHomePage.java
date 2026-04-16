@@ -144,7 +144,41 @@ public class HealerHomePage extends HomePage {
     }
 
     public Locator healFooter() {
-        return healer.find(footer, "Page footer section", this);
+        return healer.find(footer, "Page footer section at the bottom of the home page", this);
+    }
+
+    public Locator healFooterCredits() {
+        return healer.find(footerCredits, "Footer credits/copyright line text 'RPG Items Finder · Mock Project for Automation Testing'", this);
+    }
+
+    public Locator healFooterVersionLabel() {
+        return healer.find(footerVersionLabel, "Footer version label showing 'Version 1.0.0'", this);
+    }
+
+    // --- Heal layout wrappers ---
+
+    public Locator healHomeShell() {
+        return healer.find(homeShell, "Outermost home page container wrapping header, main, and footer", this);
+    }
+
+    public Locator healHomeMain() {
+        return healer.find(homeMain, "Main content region of the home page", this);
+    }
+
+    public Locator healHomeHero() {
+        return healer.find(homeHero, "Hero/welcome banner section at the top of the home page", this);
+    }
+
+    public Locator healHomeSearchArea() {
+        return healer.find(homeSearchArea, "Container around the search input on the home page", this);
+    }
+
+    public Locator healHomeMainLayout() {
+        return healer.find(homeMainLayout, "Two-column layout wrapping the filter panel and items catalog", this);
+    }
+
+    public Locator healHomeCatalog() {
+        return healer.find(homeCatalog, "Items catalog container that holds the items grid", this);
     }
 
     public Locator healLogoLink() {

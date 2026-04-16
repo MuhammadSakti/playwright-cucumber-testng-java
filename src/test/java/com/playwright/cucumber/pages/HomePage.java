@@ -55,6 +55,16 @@ public class HomePage extends BasePage {
 
     // Footer (Home page only)
     public final Locator footer;
+    public final Locator footerCredits;
+    public final Locator footerVersionLabel;
+
+    // Layout wrappers
+    public final Locator homeShell;
+    public final Locator homeMain;
+    public final Locator homeHero;
+    public final Locator homeSearchArea;
+    public final Locator homeMainLayout;
+    public final Locator homeCatalog;
 
     public HomePage(Page page) {
         super(page);
@@ -107,8 +117,18 @@ public class HomePage extends BasePage {
         this.toastMessage = page.getByTestId("toast-message");
         this.toastClose = page.getByTestId("toast-close");
 
-        // Footer (Home page only)
+        // Footer (Home page only) -- intentionally using OLD test-ids to trigger auto-heal
         this.footer = page.getByTestId("footer");
+        this.footerCredits = page.getByTestId("footer-text");
+        this.footerVersionLabel = page.getByTestId("footer-version");
+
+        // Layout wrappers -- intentionally using OLD test-ids to trigger auto-heal
+        this.homeShell = page.getByTestId("app-container");
+        this.homeMain = page.getByTestId("main-content");
+        this.homeHero = page.getByTestId("hero-section");
+        this.homeSearchArea = page.getByTestId("search-section");
+        this.homeMainLayout = page.getByTestId("content-layout");
+        this.homeCatalog = page.getByTestId("items-section");
     }
 
     public void open() {

@@ -129,4 +129,48 @@ public class HealerHomePageTest extends HealerBaseTest {
     public void healItemsGrid() {
         homePage.healItemsGrid();
     }
+
+    // --- Layout wrappers (intentionally broken to exercise auto-heal) ---
+
+    @Test
+    public void healHomeShell() {
+        homePage.healHomeShell();
+    }
+
+    @Test
+    public void healHomeMain() {
+        homePage.healHomeMain();
+    }
+
+    @Test
+    public void healHomeHero() {
+        homePage.healHomeHero();
+    }
+
+    @Test
+    public void healHomeSearchArea() {
+        homePage.healHomeSearchArea();
+    }
+
+    @Test
+    public void healHomeMainLayout() {
+        homePage.healHomeMainLayout();
+    }
+
+    @Test
+    public void healHomeCatalog() {
+        homePage.healHomeCatalog();
+    }
+
+    // --- Footer extras (intentionally broken to exercise auto-heal) ---
+
+    @Test
+    public void healFooterCredits() {
+        homePage.healFooterCredits();
+    }
+
+    @Test
+    public void healFooterVersionLabel() {
+        homePage.healFooterVersionLabel();
+    }
 }

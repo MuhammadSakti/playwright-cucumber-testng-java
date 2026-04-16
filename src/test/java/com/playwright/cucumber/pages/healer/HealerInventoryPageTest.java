@@ -24,6 +24,8 @@ public class HealerInventoryPageTest extends HealerBaseTest {
         LoginPage loginPage = new LoginPage(page);
         loginPage.open();
         loginPage.loginAs("warrior", "sword123");
+        // Verify login succeeded before proceeding
+        loginPage.headerUserName.waitFor();
     }
 
     @Override
