@@ -21,4 +21,9 @@
             <class name="com.playwright.cucumber.pages.healer.HealerProfilePageTest"/>
         </classes>
     </test>
+    <test name="HealerSakti About Page Tests">
+        <classes>
+            <class name="com.playwright.cucumber.pages.healer.HealerAboutPageTest"/>
+        </classes>
+    </test>
 </suite>
